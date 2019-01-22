@@ -1,4 +1,4 @@
-1. Додати, вилучити предмети, факультети, лектори:
+1. Р”РѕРґР°С‚Рё, РІРёР»СѓС‡РёС‚Рё РїСЂРµРґРјРµС‚Рё, С„Р°РєСѓР»СЊС‚РµС‚Рё, Р»РµРєС‚РѕСЂРё:
 INSERT INTO "Faculty" (dean, faculty_name, foundation_year)
 VALUES ('Kovalchuk', 'econonomics department', '1973');
 INSERT INTO "Subject" (id_faculty, subject_name, term, hours_amt, control_form, id_lecturer)
@@ -14,13 +14,13 @@ DELETE FROM "Lecturer"
 WHERE "name_surname"='Boyko Iryna';
 
 
-2. Вивести усі предмети, факультети, лектори:
+2. Р’РёРІРµСЃС‚Рё СѓСЃС– РїСЂРµРґРјРµС‚Рё, С„Р°РєСѓР»СЊС‚РµС‚Рё, Р»РµРєС‚РѕСЂРё:
 SELECT subject_name FROM "Subject";
 SELECT faculty_name FROM "Faculty";
 SELECT name_surname FROM "Lecturer"; 
 
 
-3. Пошук по частині назві предмету, факультету, прізвищу лектора:
+3. РџРѕС€СѓРє РїРѕ С‡Р°СЃС‚РёРЅС– РЅР°Р·РІС– РїСЂРµРґРјРµС‚Сѓ, С„Р°РєСѓР»СЊС‚РµС‚Сѓ, РїСЂС–Р·РІРёС‰Сѓ Р»РµРєС‚РѕСЂР°:
 SELECT * FROM "Subject"
 WHERE subject_name LIKE 'ph%'; 
 SELECT * FROM "Faculty"
@@ -29,42 +29,42 @@ SELECT name_surname FROM "Lecturer"
 WHERE name_surname LIKE '%a%';
 
 
-4. Вивід предметів заданого лектора: 
+4. Р’РёРІС–Рґ РїСЂРµРґРјРµС‚С–РІ Р·Р°РґР°РЅРѕРіРѕ Р»РµРєС‚РѕСЂР°: 
 Select  subject_name, name_surname  
 From "Subject" 
 Inner JOIN  "Lecturer" ON "Lecturer".id_lecturer="Subject".id_lecturer
 WHERE name_surname='Mershon Evgeniya'
-Вивести предмети заданого факультету: 
+Р’РёРІРµСЃС‚Рё РїСЂРµРґРјРµС‚Рё Р·Р°РґР°РЅРѕРіРѕ С„Р°РєСѓР»СЊС‚РµС‚Сѓ: 
 Select  subject_name, faculty_name  
 From "Subject" 
 Inner JOIN  "Faculty" ON "Faculty".id_faculty="Subject".id_faculty
 WHERE faculty_name='historical department'
-Вивід предметів, що читається у заданому семестрі:
+Р’РёРІС–Рґ РїСЂРµРґРјРµС‚С–РІ, С‰Рѕ С‡РёС‚Р°С”С‚СЊСЃСЏ Сѓ Р·Р°РґР°РЅРѕРјСѓ СЃРµРјРµСЃС‚СЂС–:
 Select  subject_name, term  
 From "Subject" 
 WHERE term=4
 
-5. Вивід факультетів, на яких читає заданий лектор:
+5. Р’РёРІС–Рґ С„Р°РєСѓР»СЊС‚РµС‚С–РІ, РЅР° СЏРєРёС… С‡РёС‚Р°С” Р·Р°РґР°РЅРёР№ Р»РµРєС‚РѕСЂ:
 Select  faculty_name, name_surname
 From "Faculty" 
 Inner JOIN  "Lecturer" ON "Lecturer".id_faculty="Faculty".id_faculty
 WHERE name_surname='Mershon Evgeniya'
 
 
-6. Вивести усіх лекторів, що читають предмет на заданому факультеті
+6. Р’РёРІРµСЃС‚Рё СѓСЃС–С… Р»РµРєС‚РѕСЂС–РІ, С‰Рѕ С‡РёС‚Р°СЋС‚СЊ РїСЂРµРґРјРµС‚ РЅР° Р·Р°РґР°РЅРѕРјСѓ С„Р°РєСѓР»СЊС‚РµС‚С–
 Select name_surname, subject_name, faculty_name
 From "Lecturer" 
 Inner Join "Subject" ON "Subject".id_lecturer="Lecturer".id_lecturer
 Inner JOIN "Faculty" ON "Faculty".id_faculty="Lecturer".id_faculty
 WHERE faculty_name='geography department'
 
-7. Вивід усіх лекторів що працюють на заданому факультеті
+7. Р’РёРІС–Рґ СѓСЃС–С… Р»РµРєС‚РѕСЂС–РІ С‰Рѕ РїСЂР°С†СЋСЋС‚СЊ РЅР° Р·Р°РґР°РЅРѕРјСѓ С„Р°РєСѓР»СЊС‚РµС‚С–
 Select name_surname, faculty_name
 From "Lecturer" 
 Inner Join "Faculty" ON "Faculty".id_faculty="Lecturer".id_faculty
 WHERE faculty_name='biology department'
 
-8. Передбачити можливість сортування (сортування по семестру в таблиці "Subject"):
+8. РџРµСЂРµРґР±Р°С‡РёС‚Рё РјРѕР¶Р»РёРІС–СЃС‚СЊ СЃРѕСЂС‚СѓРІР°РЅРЅСЏ (СЃРѕСЂС‚СѓРІР°РЅРЅСЏ РїРѕ СЃРµРјРµСЃС‚СЂСѓ РІ С‚Р°Р±Р»РёС†С– "Subject"):
 Select * From "Subject"
 Order by "term"
 
